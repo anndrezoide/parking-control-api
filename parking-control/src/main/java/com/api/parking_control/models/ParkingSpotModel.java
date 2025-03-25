@@ -10,9 +10,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "TB_PARKING_SPOT")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ParkingSpotModel implements Serializable {
 	private static final long serialVersionUID = 1L; //Conversões de objetos java para bites para serem salvas no banco de dados.
 	
@@ -46,4 +52,7 @@ public class ParkingSpotModel implements Serializable {
 	
 	@Column(nullable = false, length = 30)
 	private String block;
+	
+	
+	
 }
