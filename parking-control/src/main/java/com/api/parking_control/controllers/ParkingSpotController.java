@@ -2,8 +2,7 @@ package com.api.parking_control.controllers;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -111,4 +110,21 @@ public class ParkingSpotController {
 		return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.save(parkingSpotModel));
 	}
 
+	@GetMapping("/by-color")
+	public ResponseEntity<Object> getParkingSpotByColorCar(@RequestParam(required = false) String color){
+		List<ParkingSpotModel> parkingSpotModelOptional = parkingSpotService.findByColor(color);
+		if(parkingSpotModelOptional.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found for color: " + color);
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(parkingSpotModelOptional);
+	}
+	
+	@GetMapping("/brand-car")
+	public ResponseEntity<Object> getParkingSpotByBrandCar(@RequestParam(required = false) String brand){
+		List<ParkingSpotModel> parkingSpotModelBrand = parkingSpotService.findByBrandCar(brand);
+		if(parkingSpotModelBrand.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found for brand: " + brand);
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(parkingSpotModelBrand);
+	}
 }

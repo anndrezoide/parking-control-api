@@ -1,5 +1,6 @@
 package com.api.parking_control.services;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -48,7 +49,13 @@ public class ParkingSpotService {
 		parkingSpotRepository.delete(parkingSpotModel);
 	}
 
-	
+	public List<ParkingSpotModel> findByColor(String color) {
+		return parkingSpotRepository.findParkingSpotByColorCar(color);
+	}
+
+	public List<ParkingSpotModel> findByBrandCar(String brand) {
+		return parkingSpotRepository.findParkingSpotModelByBrandCar(brand);
+	}
 	
 	
 }
