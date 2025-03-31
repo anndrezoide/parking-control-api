@@ -3,7 +3,7 @@ package com.api.parking_control.models;
 import java.io.Serializable;
 import java.util.UUID;
 
-import javax.management.relation.Role;
+import com.api.parking_control.enums.UserRole;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,12 +37,12 @@ public class OwnerModel implements Serializable {
 	private String document;
 	
 	@Column(nullable = false, length = 30)
-	private String apartament;
+	private String apartment;
 	
 	@Column(nullable = false, length = 30)
 	private String block;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 30)
-	private Role role;
+	private UserRole role;
 }

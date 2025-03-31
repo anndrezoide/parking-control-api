@@ -1,6 +1,6 @@
 package com.api.parking_control.enums;
 
-public enum Role {
+public enum UserRole {
 	RESIDENT,
 	ADMIN,
 	VISITANT;
