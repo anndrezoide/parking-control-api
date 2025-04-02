@@ -1,6 +1,7 @@
 package com.api.parking_control.dtos;
 
-import jakarta.persistence.Column;
+import java.util.UUID;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -24,4 +25,7 @@ public class CarDto {
 	
 	@NotBlank
 	private String color;
+	
+	@NotBlank
+	private UUID ownerId; //relacionamento com o owner
 }

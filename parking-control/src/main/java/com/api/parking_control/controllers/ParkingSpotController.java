@@ -36,7 +36,7 @@ public class ParkingSpotController {
 	
 	@Autowired
 	private ParkingSpotService parkingSpotService;
-
+/*
 	@PostMapping
 	public ResponseEntity<Object> saveParkingSpot(@RequestBody @Valid ParkingSpotDto parkingSpotDto){
 		if(parkingSpotService.existsByLicensePlateCar(parkingSpotDto.getLicensePlateCar())) {
@@ -58,7 +58,7 @@ public class ParkingSpotController {
 		parkingSpotModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
 		return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotService.save(parkingSpotModel));
 		
-	}
+	}*/
 	
 	@GetMapping                                                     //Outro modo de fazer paginação: getAllParkingSpot(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable)
 	public ResponseEntity<Page<ParkingSpotModel>> getAllParkingSpot(Pageable pageable){

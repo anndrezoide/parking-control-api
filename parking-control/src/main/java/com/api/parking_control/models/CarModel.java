@@ -8,6 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,4 +40,12 @@ public class CarModel implements Serializable {
 	
 	@Column(nullable = false, length = 70)
 	private String color;
+	
+	@ManyToOne
+	@JoinColumn(name = "owner_id", nullable = false)
+	private OwnerModel owner;
+	
+	@OneToOne
+	@JoinColumn(name = "parking_spot_id", unique = true)
+	private ParkingSpotModel parkingSpot;
 }

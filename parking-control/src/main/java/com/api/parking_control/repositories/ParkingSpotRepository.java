@@ -13,7 +13,7 @@ import com.api.parking_control.models.ParkingSpotModel;
 
 @Repository
 public interface ParkingSpotRepository extends JpaRepository<ParkingSpotModel, UUID>{
-	
+	/*
 	boolean existsByLicensePlateCar(String licensePlateCar);
 	boolean existsByParkingSpotNumber(String parkingSpotNumber);
 	boolean existsByApartamentAndBlock(String apartament, String block);
@@ -22,4 +22,5 @@ public interface ParkingSpotRepository extends JpaRepository<ParkingSpotModel, U
 	List<ParkingSpotModel> findParkingSpotByColorCar(@Param("color") String color);
 	
 	List<ParkingSpotModel> findParkingSpotModelByBrandCar(String brandCar);
+	*/
 }

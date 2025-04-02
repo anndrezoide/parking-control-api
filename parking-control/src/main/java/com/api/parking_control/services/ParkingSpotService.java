@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.api.parking_control.models.ParkingSpotModel;
+import com.api.parking_control.repositories.CarRepository;
+import com.api.parking_control.repositories.OwnerRepository;
 import com.api.parking_control.repositories.ParkingSpotRepository;
 
 @Service
@@ -18,12 +20,18 @@ public class ParkingSpotService {
 
 	@Autowired
 	private ParkingSpotRepository parkingSpotRepository;
+	
+	@Autowired
+	private CarRepository carRepository;
+	
+	@Autowired
+	private OwnerRepository ownerRepository;
 
 	@Transactional //Importante para metodos construtivos e destrutivos pois se algo der errado ele garante o rollback para que não tenha dados quebrados.
 	public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {
 		return parkingSpotRepository.save(parkingSpotModel);
 	}
-
+	
 	public boolean existsByLicensePlateCar(String licensePlateCar) {
 		return parkingSpotRepository.existsByLicensePlateCar(licensePlateCar);
 	}

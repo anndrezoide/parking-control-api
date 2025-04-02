@@ -1,6 +1,6 @@
 package com.api.parking_control.dtos;
 
-import javax.management.relation.Role;
+import com.api.parking_control.enums.UserRole;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -22,11 +22,11 @@ public class OwnerDto {
 	private String document;
 	
 	@NotBlank
-	private String apartment;
+	private String apartament;
 	
 	@NotBlank
 	private String block;
 	
 	@NotNull
-	private Role role;
+	private UserRole role;
 }
