@@ -27,5 +27,8 @@ public class CarDto {
 	private String color;
 	
 	@NotBlank
-	private UUID ownerId; //relacionamento com o owner
+	private OwnerDto owner;
+	
+	@NotBlank
+	private ParkingSpotDto parkingSpots;
 }

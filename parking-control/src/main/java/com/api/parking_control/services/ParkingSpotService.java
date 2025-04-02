@@ -17,7 +17,7 @@ import com.api.parking_control.repositories.ParkingSpotRepository;
 
 @Service
 public class ParkingSpotService {
-
+/*
 	@Autowired
 	private ParkingSpotRepository parkingSpotRepository;
 	
@@ -64,6 +64,6 @@ public class ParkingSpotService {
 	public List<ParkingSpotModel> findByBrandCar(String brand) {
 		return parkingSpotRepository.findParkingSpotModelByBrandCar(brand);
 	}
-	
+	*/
 	
 }

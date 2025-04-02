@@ -46,6 +46,9 @@ public class OwnerModel implements Serializable {
 	@Column(nullable = false, length = 30)
 	private String block;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 30)
+	private UserRole role;
 	
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private Set<CarModel> cars = new HashSet<>();
@@ -53,7 +56,4 @@ public class OwnerModel implements Serializable {
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private Set<ParkingSpotModel> parkingSpots = new HashSet<>();
 	
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, length = 30)
-	private UserRole role;
 }

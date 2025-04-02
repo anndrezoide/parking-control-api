@@ -17,10 +17,10 @@ public interface ParkingSpotRepository extends JpaRepository<ParkingSpotModel, U
 	boolean existsByLicensePlateCar(String licensePlateCar);
 	boolean existsByParkingSpotNumber(String parkingSpotNumber);
 	boolean existsByApartamentAndBlock(String apartament, String block);
-	
+	/*
 	@Query("SELECT p FROM ParkingSpotModel p WHERE LOWER(p.colorCar) = LOWER(:color)")
 	List<ParkingSpotModel> findParkingSpotByColorCar(@Param("color") String color);
-	
-	List<ParkingSpotModel> findParkingSpotModelByBrandCar(String brandCar);
 	*/
+	//List<ParkingSpotModel> findParkingSpotModelByBrandCar(String brandCar);
+
 }

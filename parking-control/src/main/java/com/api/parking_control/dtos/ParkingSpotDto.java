@@ -16,13 +16,4 @@ public class ParkingSpotDto {
 
 	@NotBlank
 	private String parkingSpotNumber;
-	
-	@Valid
-	@NotNull
-	private UUID carId;
-	
-	@Valid
-	@NotNull
-	private UUID ownerID;
-	
 }
