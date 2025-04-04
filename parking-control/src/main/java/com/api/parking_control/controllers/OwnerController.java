@@ -34,6 +34,9 @@ public class OwnerController {
 	
 	@PostMapping
 	public ResponseEntity<Object> save(@RequestBody @Valid OwnerDto ownerDto){
+		if(ownerService.existsByDocument(ownerDto.getDocument())){
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Owner's document is already in use!");
+		}
 		var ownerModel = new OwnerModel();
 		
 		BeanUtils.copyProperties(ownerDto, ownerModel);

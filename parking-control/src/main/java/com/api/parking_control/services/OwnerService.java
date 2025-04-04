@@ -35,6 +35,10 @@ public class OwnerService {
 	public void delete(OwnerModel ownerModel) {
 		ownerRepository.delete(ownerModel);
 	}
+
+	public boolean existsByDocument(String document) {
+		return ownerRepository.existsByDocument(document);
+	}
 	
 	
 }

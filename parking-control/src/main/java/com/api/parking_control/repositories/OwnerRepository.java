@@ -9,5 +9,7 @@ import com.api.parking_control.models.OwnerModel;
 
 @Repository
 public interface OwnerRepository extends JpaRepository<OwnerModel, UUID>{
+	
+	boolean existsByDocument(String document);
 
 }
