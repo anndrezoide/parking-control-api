@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,23 +24,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ParkingSpotModel implements Serializable {
-	private static final long serialVersionUID = 1L; //Conversões de objetos java para bites para serem salvas no banco de dados.
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
-	
-	@Column(nullable = false, unique = true, length = 10)
-	private String parkingSpotNumber;
-	
-	@Column(nullable = false)
-	private LocalDateTime registrationDate;
-	
-	@ManyToOne
-	@JoinColumn(name = "owner_id", nullable = false)
-	private OwnerModel owner;
-	
-	@OneToOne(mappedBy = "parkingSpot")
-	private CarModel car;
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @Column(nullable = false, unique = true, length = 10)
+    private String parkingSpotNumber;
+
+    @Column(nullable = false)
+    private LocalDateTime registrationDate;
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private OwnerModel owner;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id", nullable = false, unique = true)
+    @JsonManagedReference
+    private CarModel car;
 }

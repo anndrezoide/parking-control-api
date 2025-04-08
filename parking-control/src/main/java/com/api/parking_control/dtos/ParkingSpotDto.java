@@ -14,6 +14,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ParkingSpotDto {
 
-	@NotBlank
-	private String parkingSpotNumber;
+    @NotBlank
+    private String parkingSpotNumber;
+
+    @NotNull
+    private UUID ownerId;
+
+    @NotNull
+    private UUID carId;
 }

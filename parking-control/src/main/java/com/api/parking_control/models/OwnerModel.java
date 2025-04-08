@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.api.parking_control.enums.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -27,33 +29,34 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OwnerModel implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
-	
-	@Column(nullable = false, length = 130)
-	private String name;
-	
-	@Column(nullable = false, unique = true, length = 50)
-	private String document;
-	
-	@Column(nullable = false, length = 30)
-	private String apartment;
-	
-	@Column(nullable = false, length = 30)
-	private String block;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, length = 30)
-	private UserRole role;
-	
-	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-	private Set<CarModel> cars = new HashSet<>();
-	
-	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-	private Set<ParkingSpotModel> parkingSpots = new HashSet<>();
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
+    @Column(nullable = false, length = 130)
+    private String name;
+
+    @Column(nullable = false, unique = true, length = 50)
+    private String document;
+
+    @Column(nullable = false, length = 30)
+    private String apartment;
+
+    @Column(nullable = false, length = 30)
+    private String block;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 30)
+    private UserRole role;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private Set<CarModel> cars = new HashSet<>();
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<ParkingSpotModel> parkingSpots = new HashSet<>();
 }

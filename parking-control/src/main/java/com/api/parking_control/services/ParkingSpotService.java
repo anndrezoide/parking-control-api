@@ -17,6 +17,32 @@ import com.api.parking_control.repositories.ParkingSpotRepository;
 
 @Service
 public class ParkingSpotService {
+	
+	@Autowired
+    private ParkingSpotRepository parkingSpotRepository;
+
+    @Transactional
+    public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {
+        return parkingSpotRepository.save(parkingSpotModel);
+    }
+
+    public Page<ParkingSpotModel> findAll(Pageable pageable) {
+        return parkingSpotRepository.findAll(pageable);
+    }
+    
+    public boolean existsByParkingSpotNumber(String parkingSpotNumber) {
+		return parkingSpotRepository.existsByParkingSpotNumber(parkingSpotNumber);
+	}
+
+    public Optional<ParkingSpotModel> findById(UUID id) {
+		return parkingSpotRepository.findById(id);
+	}
+    
+    @Transactional
+	public void delete(ParkingSpotModel parkingSpotModel) {
+		parkingSpotRepository.delete(parkingSpotModel);
+	}
+
 /*
 	@Autowired
 	private ParkingSpotRepository parkingSpotRepository;
@@ -36,25 +62,12 @@ public class ParkingSpotService {
 		return parkingSpotRepository.existsByLicensePlateCar(licensePlateCar);
 	}
 
-	public boolean existsByParkingSpotNumber(String parkingSpotNumber) {
-		return parkingSpotRepository.existsByParkingSpotNumber(parkingSpotNumber);
-	}
-
 	public boolean existsByApartamentAndBlock(String apartament, String block) {
 		return parkingSpotRepository.existsByApartamentAndBlock(apartament, block);
 	}
 
 	public Page<ParkingSpotModel> findAll(Pageable pageable) {
 		return parkingSpotRepository.findAll(pageable);
-	}
-
-	public Optional<ParkingSpotModel> findById(UUID id) {
-		return parkingSpotRepository.findById(id);
-	}
-
-	@Transactional
-	public void delete(ParkingSpotModel parkingSpotModel) {
-		parkingSpotRepository.delete(parkingSpotModel);
 	}
 
 	public List<ParkingSpotModel> findByColor(String color) {
@@ -65,5 +78,6 @@ public class ParkingSpotService {
 		return parkingSpotRepository.findParkingSpotModelByBrandCar(brand);
 	}
 	*/
+
 	
 }

@@ -3,7 +3,7 @@ package com.api.parking_control.dtos;
 import java.util.UUID;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,23 +12,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarDto {
-	
-	@NotBlank
-	@Size(max = 7)
-	private String licensePlate;
-	
-	@NotBlank
-	private String brand;
-	
-	@NotBlank
-	private String model;
-	
-	@NotBlank
-	private String color;
-	
-	@NotBlank
-	private OwnerDto owner;
-	
-	@NotBlank
-	private ParkingSpotDto parkingSpots;
+
+    @NotBlank
+    private String licensePlate;
+
+    @NotBlank
+    private String brand;
+
+    @NotBlank
+    private String model;
+
+    @NotBlank
+    private String color;
+
+    @NotNull
+    private UUID ownerId;
+    
+    private UUID parkingSpotId;
 }

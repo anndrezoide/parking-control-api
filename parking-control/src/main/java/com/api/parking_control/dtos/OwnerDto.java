@@ -32,10 +32,4 @@ public class OwnerDto {
 	@NotNull
 	private UserRole role;
 	
-	
-	private Set<CarDto> cars;
-	
-	
-	private Set<ParkingSpotDto> parkingSpots;
-	
 }

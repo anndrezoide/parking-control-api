@@ -14,31 +14,28 @@ import com.api.parking_control.repositories.OwnerRepository;
 
 @Service
 public class OwnerService {
+    @Autowired
+    private OwnerRepository ownerRepository;
 
-	@Autowired
-	private OwnerRepository ownerRepository;
+    @Transactional
+    public OwnerModel save(OwnerModel ownerModel) {
+        return ownerRepository.save(ownerModel);
+    }
 
-	@Transactional
-	public Object save(OwnerModel ownerModel) {
-		return ownerRepository.save(ownerModel);
-	}
+    public boolean existsByDocument(String document) {
+        return ownerRepository.existsByDocument(document);
+    }
 
-	public Page<OwnerModel> findAll(Pageable pageable) {
-		return ownerRepository.findAll(pageable);
-	}
+    public Page<OwnerModel> findAll(Pageable pageable) {
+        return ownerRepository.findAll(pageable);
+    }
 
-	public Optional<OwnerModel> findById(UUID id) {
-		return ownerRepository.findById(id);
-	}
+    public Optional<OwnerModel> findById(UUID id) {
+        return ownerRepository.findById(id);
+    }
 
-	@Transactional
-	public void delete(OwnerModel ownerModel) {
-		ownerRepository.delete(ownerModel);
-	}
-
-	public boolean existsByDocument(String document) {
-		return ownerRepository.existsByDocument(document);
-	}
-	
-	
+    @Transactional
+    public void delete(OwnerModel ownerModel) {
+        ownerRepository.delete(ownerModel);
+    }
 }
