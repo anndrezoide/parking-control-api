@@ -1,6 +1,7 @@
 package com.api.parking_control.dtos;
 
 import java.util.Set;
+import java.util.UUID;
 
 import com.api.parking_control.enums.UserRole;
 
@@ -32,4 +33,5 @@ public class OwnerDto {
 	@NotNull
 	private UserRole role;
 	
+    private UUID carId;
 }

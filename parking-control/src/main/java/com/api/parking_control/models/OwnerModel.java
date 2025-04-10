@@ -2,6 +2,7 @@ package com.api.parking_control.models;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -59,4 +60,5 @@ public class OwnerModel implements Serializable {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<ParkingSpotModel> parkingSpots = new HashSet<>();
+
 }

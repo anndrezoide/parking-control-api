@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.parking_control.dtos.CarDto;
 import com.api.parking_control.dtos.OwnerDto;
+import com.api.parking_control.models.CarModel;
 import com.api.parking_control.models.OwnerModel;
+import com.api.parking_control.services.CarService;
 import com.api.parking_control.services.OwnerService;
 
 import jakarta.validation.Valid;
@@ -31,6 +34,9 @@ public class OwnerController {
 
 	@Autowired
 	private OwnerService ownerService;
+	
+	@Autowired
+	private CarService carService;
 	
 	@PostMapping
 	public ResponseEntity<Object> save(@RequestBody @Valid OwnerDto ownerDto){
