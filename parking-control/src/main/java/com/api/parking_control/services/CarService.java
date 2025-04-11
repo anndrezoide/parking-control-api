@@ -4,6 +4,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,4 +25,8 @@ public class CarService {
     public Optional<CarModel> findById(UUID id) {
         return carRepository.findById(id);
     }
+
+	public Page<CarModel> findAll(Pageable pageable) {
+		return carRepository.findAll(pageable);
+	}
 }
