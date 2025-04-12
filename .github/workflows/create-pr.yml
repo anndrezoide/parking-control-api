@@ -20,3 +20,9 @@ jobs:
           pr_title: "Merge dev into main"
           pr_body: "Auto-generated PR from dev to main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Opções adicionais (opcionais):
+          assignees: "seu-usuario-github"
+          reviewers: "usuario-reviewer"
+          labels: "automatic-pr,merge"
+          # Evita criar um novo PR se já existir um aberto:
+          pr_close_previous: true
