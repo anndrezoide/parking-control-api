@@ -21,7 +21,7 @@ public class OwnerService {
     public OwnerModel save(OwnerModel ownerModel) {
         return ownerRepository.save(ownerModel);
     }
-
+    
     public boolean existsByDocument(String document) {
         return ownerRepository.existsByDocument(document);
     }

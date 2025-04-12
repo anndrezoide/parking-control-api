@@ -29,4 +29,8 @@ public class CarService {
 	public Page<CarModel> findAll(Pageable pageable) {
 		return carRepository.findAll(pageable);
 	}
+
+	public void delete(CarModel carModel) {
+		carRepository.delete(carModel);
+	}
 }
