@@ -39,7 +39,7 @@ public class CarController {
     public ResponseEntity<Object> saveCar(@RequestBody @Valid CarDto carDto) {
         var ownerOptional = ownerService.findById(carDto.getOwnerId());
         if (ownerOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Owner not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Message: Owner not found");
         }
         var carModel = new CarModel();
         BeanUtils.copyProperties(carDto, carModel);
