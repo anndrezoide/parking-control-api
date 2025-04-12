@@ -56,7 +56,7 @@ public class CarController {
     public ResponseEntity<Object> getCarById(@PathVariable(value = "id") UUID id){
     	Optional<CarModel> carOptional = carService.findById(id);
     	if(!carOptional.isPresent()) {
-    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Message: Car not found for id: " + id);
+    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found for id: " + id);
     	}
     	return ResponseEntity.status(HttpStatus.OK).body(carOptional.get());
     }
