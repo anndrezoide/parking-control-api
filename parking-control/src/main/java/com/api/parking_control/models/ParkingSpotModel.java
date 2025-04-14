@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,12 +16,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "TB_PARKING_SPOT")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ParkingSpotModel implements Serializable {
@@ -37,11 +40,24 @@ public class ParkingSpotModel implements Serializable {
     private LocalDateTime registrationDate;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @JoinColumn(name = "owner_id")
     private OwnerModel owner;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_id", nullable = false, unique = true)
-    @JsonManagedReference
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToOne
+    @JoinColumn(name = "car_id")
     private CarModel car;
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CarModel)) return false;
+        CarModel that = (CarModel) o;
+        return id != null && id.equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }

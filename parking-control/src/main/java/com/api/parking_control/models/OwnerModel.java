@@ -2,15 +2,12 @@ package com.api.parking_control.models;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
 import com.api.parking_control.enums.UserRole;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -21,12 +18,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "TB_OWNER")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class OwnerModel implements Serializable {
@@ -52,13 +51,25 @@ public class OwnerModel implements Serializable {
     @Column(nullable = false, length = 30)
     private UserRole role;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "owner")
     private Set<CarModel> cars = new HashSet<>();
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "owner")
     private Set<ParkingSpotModel> parkingSpots = new HashSet<>();
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CarModel)) return false;
+        CarModel that = (CarModel) o;
+        return id != null && id.equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 
 }

@@ -3,8 +3,7 @@ package com.api.parking_control.models;
 import java.io.Serializable;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,12 +14,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "TB_CAR")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarModel implements Serializable {
@@ -43,11 +44,22 @@ public class CarModel implements Serializable {
     private String color;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
-    @JsonBackReference
+    @JoinColumn(name = "owner_id")
     private OwnerModel owner;
 
-    @OneToOne(mappedBy = "car")
-    @JsonBackReference
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     private ParkingSpotModel parkingSpot;
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CarModel)) return false;
+        CarModel that = (CarModel) o;
+        return id != null && id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 }
