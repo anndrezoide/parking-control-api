@@ -38,6 +38,12 @@ public class OwnerController {
 	@Autowired
 	private CarService carService;
 	
+	@PostMapping("/save")
+    public ResponseEntity<OwnerModel> saveOwner(@RequestBody OwnerDto ownerDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(ownerService.saveOwner(ownerDto));
+    }
+	
+	/*
 	@PostMapping
 	public ResponseEntity<Object> save(@RequestBody @Valid OwnerDto ownerDto){
 		if(ownerService.existsByDocument(ownerDto.getDocument())){
@@ -47,6 +53,19 @@ public class OwnerController {
 		
 		BeanUtils.copyProperties(ownerDto, ownerModel);
 		return ResponseEntity.status(HttpStatus.CREATED).body(ownerService.save(ownerModel));
+	}*/
+	
+	@PostMapping("/{idOwner}/cars/{idCar}")
+	public ResponseEntity<Object> addCarToOwner(@PathVariable(value = "idOwner") UUID idOwner, @PathVariable(value = "idCar") UUID idCar){
+		Optional<OwnerModel> ownerOptional = ownerService.findById(idOwner);
+		Optional<CarModel> carOptional = carService.findById(idCar);
+		
+		var ownerModel = ownerOptional.get();
+		var carModel = carOptional.get();
+		
+		carModel.setOwner(ownerModel);
+		ownerModel.getCars().add(carModel);
+		return ResponseEntity.status(HttpStatus.OK).body(ownerService.save(ownerModel));
 	}
 	
 	@GetMapping                                                     
