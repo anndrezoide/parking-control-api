@@ -5,11 +5,25 @@ import java.util.UUID;
 
 import com.api.parking_control.enums.UserRole;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 /*
 @Data
 @AllArgsConstructor
 @NoArgsConstructor*/
-public record OwnerDto(String name, String document, String apartment, String block, UserRole role, Set<UUID> carId, Set<UUID> parkingSpotId) {
+public record OwnerDto(
+		@NotBlank @Size(max = 130, message = "The name must have util 100 caracteres") String name, 
+		@NotBlank
+		String document, 
+		@NotBlank
+		String apartment, 
+		@NotBlank
+		String block,
+		@NotBlank
+		UserRole role, 
+		Set<UUID> carId, 
+		Set<UUID> parkingSpotId) {
 	/*
 	@NotBlank
 	@Size(max = 130, message = "The name must have util 100 caracteres")
