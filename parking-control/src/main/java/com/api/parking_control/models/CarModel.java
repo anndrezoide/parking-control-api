@@ -3,6 +3,8 @@ package com.api.parking_control.models;
 import java.io.Serializable;
 import java.util.UUID;
 
+import com.api.parking_control.dtos.CarDto;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,6 +51,7 @@ public class CarModel implements Serializable {
 
     @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     private ParkingSpotModel parkingSpot;
+    
     
     @Override
     public boolean equals(Object o) {
